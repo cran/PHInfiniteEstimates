@@ -27,17 +27,6 @@ bcfit<-coxph(Surv(TIME,CENS)~ T+ N+ G+ CD,data=breast,x=TRUE)
 \donttest{
 fixcoxph(bcfit,bcfit$x,"T",Surv(TIME,CENS)~ T+ N+ G+ CD)
 }
-data(HgFish) # From library NADA
-HgFish$PropWetland<-HgFish$PctWetland/100
-OneSpecies<-HgFish[HgFish$Species=="LargemouthBass",]
-OneSpecies$SedMeHgH<-(OneSpecies$SedMeHg>median(OneSpecies$SedMeHg))*1
-OneSpecies$SedAVSH<-(OneSpecies$SedAVS>median(OneSpecies$SedAVS))*1
-OneSpecies$SedLOIH<-(OneSpecies$SedLOI>median(OneSpecies$SedLOI))*1
-largemouthbassfit<-coxph(Surv(1/Hg,!HgCen)~SedAVSH+SedLOIH+SedMeHgH+
-  SedMeHgH*SedAVSH+SedMeHgH*SedLOIH+PropWetland ,data=OneSpecies,x=TRUE)
-\donttest{
-fixcoxph(largemouthbassfit,largemouthbassfit$x,"PropWetland")
-}
 }
 \references{
 \insertRef{kz19}{PHInfiniteEstimates}

@@ -16,17 +16,6 @@
 #'\donttest{
 #' fixcoxph(bcfit,bcfit$x,"T",Surv(TIME,CENS)~ T+ N+ G+ CD)
 #'}
-#' data(HgFish) # From library NADA
-#' HgFish$PropWetland<-HgFish$PctWetland/100
-#' OneSpecies<-HgFish[HgFish$Species=="LargemouthBass",]
-#' OneSpecies$SedMeHgH<-(OneSpecies$SedMeHg>median(OneSpecies$SedMeHg))*1
-#' OneSpecies$SedAVSH<-(OneSpecies$SedAVS>median(OneSpecies$SedAVS))*1
-#' OneSpecies$SedLOIH<-(OneSpecies$SedLOI>median(OneSpecies$SedLOI))*1
-#' largemouthbassfit<-coxph(Surv(1/Hg,!HgCen)~SedAVSH+SedLOIH+SedMeHgH+
-#'   SedMeHgH*SedAVSH+SedMeHgH*SedLOIH+PropWetland ,data=OneSpecies,x=TRUE)
-#' \donttest{
-#' fixcoxph(largemouthbassfit,largemouthbassfit$x,"PropWetland")
-#' }
 fixcoxph<-function(randdat,xxx,iv,verbose=FALSE){
    bad<-NULL
 # Test first to make sure there is at least one event.  Otherwise return an error.

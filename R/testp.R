@@ -21,32 +21,10 @@
 #' }
 #' @importFrom survival Surv coxph survreg
 #' @importFrom stats pnorm
-# The next line is only to make the package pass CRAN checks.  My package depends on NADA only because
-# I use a data set that NADA doesn't export.  Since NADA doesn't export it, I can't import, and CRAN
-# doesn't like dependent packages on which nothing is imported.
-#' @importFrom NADA NADAprobs
 #' @export
 #' @references 
 #' \insertRef{kz19}{PHInfiniteEstimates}
 #' @examples
-#' data(HgFish) # From library NADA
-#' HgFish$PropWetland<-HgFish$PctWetland/100
-#' OneSpecies<-HgFish[HgFish$Species=="LargemouthBass",]
-#' OneSpecies$SedMeHgH<-(OneSpecies$SedMeHg>median(OneSpecies$SedMeHg))*1
-#' OneSpecies$SedAVSH<-(OneSpecies$SedAVS>median(OneSpecies$SedAVS))*1
-#' OneSpecies$SedLOIH<-(OneSpecies$SedLOI>median(OneSpecies$SedLOI))*1
-#' largemouthbassfit<-coxph(Surv(1/Hg,!HgCen)~SedAVSH+SedLOIH+SedMeHgH+
-#'   SedMeHgH*SedAVSH+SedMeHgH*SedLOIH+PropWetland ,data=OneSpecies,x=TRUE)
-#' set.seed(1283712832)
-#'\donttest{
-#' hgtestp<-testp(OneSpecies,Surv(1/Hg,!HgCen)~SedAVSH+SedLOIH+SedMeHgH+
-#'   SedMeHgH*SedAVSH+SedMeHgH*SedLOIH+PropWetland,"PropWetland",10,verbose=TRUE)
-#' ss<-sort(hgtestp$out[,1])
-#' tt<-sort(hgtestp$out[,2])
-#' plot(seq(length(ss))/length(ss),ss,type="l")
-#' lines(seq(length(tt))/length(tt),tt,lty=2)
-#' legend(0,.8,legend=c("Wald Test","Likelihood Ratio Test"),lty=1:2)
-#' }
 #' data(breast)
 #'\donttest{
 #' breattestp<-testp(breast,Surv(TIME,CENS)~ T+ N+ G+ CD,"T",72,verbose=TRUE)
