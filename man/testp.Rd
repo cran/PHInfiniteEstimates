@@ -53,7 +53,7 @@ This function is intended to verify the operating characteristics of the approxi
 \examples{
 data(breast)
 \donttest{
-breattestp<-testp(breast,Surv(TIME,CENS)~ T+ N+ G+ CD,"T",72,verbose=TRUE)
+breattestp<-testp(breast,Surv(TIME,CENS)~ T+ N+ G+ CD,"T",72,nsamp=100,verbose=TRUE)
 }
 }
 \references{

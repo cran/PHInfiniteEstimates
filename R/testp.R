@@ -27,7 +27,7 @@
 #' @examples
 #' data(breast)
 #'\donttest{
-#' breattestp<-testp(breast,Surv(TIME,CENS)~ T+ N+ G+ CD,"T",72,verbose=TRUE)
+#' breattestp<-testp(breast,Surv(TIME,CENS)~ T+ N+ G+ CD,"T",72,nsamp=100,verbose=TRUE)
 #'}
 testp<-function(dataset,myformula,iv,ctime,nsamp=10000,add=NULL,nobs=NA,half=FALSE,verbose=FALSE){
    bad<-NULL
@@ -83,13 +83,13 @@ testp<-function(dataset,myformula,iv,ctime,nsamp=10000,add=NULL,nobs=NA,half=FAL
             km<-repairedfit$keepme
             km[iv]<-TRUE
             v1<-try(det(repairedfit$var[km,km,drop=FALSE]))
-            if(class(v1)=="try-error"){
+            if(inherits(v1,"try-error")){
                message("Error from v1")
                browser()
             }
             km[iv]<-FALSE
             v2<-try(if(any(km)) det(repairedfit$svar[km,km,drop=FALSE]) else 1)
-            if(class(v2)=="try-error"){
+            if(inherits(class(v2),"try-error")){
                message("Error from v2")
                browser()
             }

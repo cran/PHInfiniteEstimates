@@ -58,15 +58,16 @@ reduceLR<-function(Z,nvec=NULL,yvec=NULL,keep,sst=NULL){
    origsst<-sst
    tempz<-Z
    toosmall<-FALSE
-   if(class(try(solve(t(tempz)%*%tempz),silent=T))[1]!="try-error"){
-      done<-FALSE
-      toosmall<-FALSE
-   }else{
+   temp<-try(solve(t(tempz)%*%tempz),silent=T)
+   if(inherits(temp,"try-error")){
       done<-TRUE
       toosmall<-NA
       oldkeepme<-NULL
       moderate<-NULL
       extreme<-NULL
+   }else{
+      done<-FALSE
+      toosmall<-FALSE
    }
    while(!done){
       im<-solve(t(tempz)%*%tempz)%*%t(tempz)

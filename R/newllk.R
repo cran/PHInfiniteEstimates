@@ -53,9 +53,8 @@ newllk<-function(beta,fit,exclude=NULL,minus=FALSE,keeponly=NULL,justd0=FALSE){
             d1<-d1+apply(xxx,2,sum)-ddd*mmm
 #           message("dim(xxxr)",dim(xxxr))
             dd2<-try(ddd*(t(apply(xxxr,2,"*",pp))%*%xxxr-mmm%*%t(mmm)))
-            if(class(dd2)=="try-error"){
+            if(inherits(dd2,"try-error")){
                message("Non-conformable array")
-               browser()
             }else{
                d2<-d2-ddd*(t(apply(xxxr,2,"*",pp))%*%xxxr-mmm%*%t(mmm))
             }

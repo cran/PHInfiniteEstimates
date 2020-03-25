@@ -37,6 +37,7 @@
 #' \insertRef{mehtapatel}{PHInfiniteEstimates}
 #'
 #' \insertRef{goorinetal87}{PHInfiniteEstimates}
+#' @export
 inference<-function(out,alpha=0.05,rng=c(-5,5)){
    nv<-dim(out$possible)[2]
    ci<-ospv<-array(NA,c(2,nv))

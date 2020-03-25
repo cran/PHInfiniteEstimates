@@ -32,13 +32,18 @@ bestbeta<-function (fit, exclude = NULL, start = NULL,touse=NA){
        newcoef<-rep(NA,length(touse))
        newcoef[touse]<-nlmo$estimate
        names(newcoef)<-names(touse)
-       try(newvar[touse,touse]<-solve(nlmo$hessian))
+       temp<-try(solve(nlmo$hessian))
+       if(inherits(temp,"try-error")){
+          message("Inverting hessian failed")
+       }else{
+          newvar[touse,touse]<-temp
+       }
        score<-NA
 #      print("touse");print(touse)
 #      print("newcoef");print(newcoef)
 #      print("dim(fit$x)");print(dim(fit$x))
        linear.predictors<-try(as.vector(fit$x[,touse,drop=FALSE]%*%newcoef[touse])-as.vector(apply(fit$x[,touse,drop=FALSE],2,mean)%*%newcoef[touse]),silent=TRUE)
-       if(class(linear.predictors)=="try-error"){
+       if(inherits(linear.predictors,"try-error")){
           message("Error in linear predictor"); browser()
        }
        wald.test<-try(newcoef[touse]%*%solve(newvar[touse,touse,drop=FALSE],newcoef[touse]),silent=TRUE)
