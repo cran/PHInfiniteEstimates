@@ -31,15 +31,16 @@ Data in the example is from \insertCite{bes;textual}{PHInfiniteEstimates}.
 }
 \examples{
 data(voter.ml)
+covs<-c("Labor","Liberal.Democrat","education")
+#Fit the multinomial regression model, for comparison purposes.
+## Lines beginning ## give mlogit syntax that has been made obsolete.
 #Add the index attribute to the data set, giving the index of choice made and the index of the 
 #alternative, and a boolean variable giving choice.
-attributes(voter.ml)$index<-voter.ml[,c("chid","alt")]
-attributes(voter.ml)$choice<-"voter"
-covs<-c("Labor","Liberal.Democrat","education")
-strs<-"chid"
-alt<-"alt"
-#Fit the multinomial regression model, for comparison purposes.
-mlogit(voter~1|Labor+Liberal.Democrat+education,data=voter.ml)
+##attributes(voter.ml)$index<-voter.ml[,c("chid","alt")]
+##attributes(voter.ml)$choice<-"voter"
+##mlogit(voter~1|Labor+Liberal.Democrat+education,data=voter.ml)
+mlogit(voter~1|Labor+Liberal.Democrat+education,data=voter.ml, 
+   chid.var = "chid", alt.var = "alt")
 #Convert to a data set allowing treatment as the equivalent conditional logistic regression.  
 #This result will be processed using reduceLR of this package to give an equivalent conditional
 # regression model avoiding infinite estimates.

@@ -1,9 +1,9 @@
-8ce9c6557726455b82afbdc8c8fb9dad *DESCRIPTION
+0f96548cf7c4dd149310df8bf847aca7 *DESCRIPTION
 bac6486db487a33f29e8a711738e2b9b *NAMESPACE
 329b2945a04d3e7ed6b4dc2d3ef31a1b *R/PHInfiniteEstimates.R
 74990cc32c03935095e24afaf6cef15d *R/bestbeta.R
 190bfbb18714d0963993a4be54ffc81e *R/checkresults.R
-3244a94bf0ffa87a4fbfeeecd544475f *R/convertbaselineltolr.R
+e9957e604279b96951e148475b5ba966 *R/convertbaselineltolr.R
 41db4702d1a1409ef50cbca418df54e5 *R/convertmtol.R
 edfa1d27fae19cd3e2350b879b0ea143 *R/convertstoml.R
 770050f267656c0625da334314e589d9 *R/drawdiagram.R
@@ -15,13 +15,13 @@ b0075789ee1fef69fc75dec3eece72a3 *R/network.R
 6219369ced8cec7bc29d6003c5e791db *R/sysdata.rda
 899df27d8a7a5d6b60605ddadc7b6a33 *R/testp.R
 00bf723117cbc3436532627ebbdf3003 *R/voter.ml.R
-cb6f0446f62cfc567e375150c5f80e6f *build/partial.rdb
+89783f8747e49cfe75466f7ae9f0f250 *build/partial.rdb
 d4f07103555db6faf9b868c621aee307 *data/voter.ml.RData
 e9f4b14e0e1b9fad872d7103a522fd31 *inst/REFERENCES.bib
 85cbad465f65ac58a6ed55c3d1389391 *man/PHInfiniteEstimates.Rd
 e7a3fa3c32b702ac4302fad3b954c291 *man/bestbeta.Rd
 b7c8408c90e564a3a5f8760a5f426c7b *man/checkresults.Rd
-3a56fac19580d018e6cbdb0b92fcac73 *man/convertbaselineltolr.Rd
+c9176362eee320ae0d226a8dbbc55e6d *man/convertbaselineltolr.Rd
 f106af6148ce2f920364a4db3f03ca0d *man/convertmtol.Rd
 8592537757a8116af2c97b7e958a3c36 *man/convertstoml.Rd
 c98d42902a014523cff82797e94f2305 *man/drawdiagram.Rd
