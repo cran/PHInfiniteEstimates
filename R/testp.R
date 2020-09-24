@@ -21,6 +21,7 @@
 #' }
 #' @importFrom survival Surv coxph survreg
 #' @importFrom stats pnorm
+#' @importFrom coxphf coxphf
 #' @export
 #' @references 
 #' \insertRef{kz19}{PHInfiniteEstimates}
@@ -41,8 +42,8 @@ testp<-function(dataset,myformula,iv,ctime,nsamp=10000,add=NULL,nobs=NA,half=FAL
    csr1[iv]<-0
    randdat<-cbind(as.data.frame(list(newt=rep(NA,nobs))),sr1$x[use,])
    if(is.null(add)){
-      outout<-array(NA,c(nsamp,6))
-      dimnames(outout)<-list(NULL,c("Waldp","LRTp","Est","SE","SRLRT","dim"))
+      outout<-array(NA,c(nsamp,8))
+      dimnames(outout)<-list(NULL,c("Waldp","LRTp","Est","SE","SRLRT","dim","coxphfe","coxphfs"))
       start<-0
       set.seed(194837485)
    }else{
@@ -107,6 +108,9 @@ testp<-function(dataset,myformula,iv,ctime,nsamp=10000,add=NULL,nobs=NA,half=FAL
             outout[start+kk,3]<-est
             outout[start+kk,4]<-ssd
             outout[start+kk,6]<-sum(!is.na(repairedfit$coefficients))
+            coxphout<-coxphf(myformula,dataset)
+            outout[start+kk,7]<-coxphout$coefficients[iv]
+            outout[start+kk,8]<-sqrt(coxphout$var[iv,iv])
 #           browser()
 #           cat("End branch b1\n")
          }else{

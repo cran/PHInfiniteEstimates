@@ -29,6 +29,7 @@ Data in the example is the breast cancer data set \code{breast} of package \code
 }
 \examples{
 #Uses data set breast from package coxphf.
+data(breast)
 out<-convertstoml(Surv(breast$TIME,breast$CENS),breast[,c("T","N","G","CD")])
 out1<-convertmtol(out[,c("T","N","G","CD")],out[,"chid"],out[,"choice"],
    out[,"patients"])

@@ -19,6 +19,7 @@ convertmtol<-function(xmat,str,yvec,subjects){
 #' \insertRef{kolassa16}{PHInfiniteEstimates}
 #' @examples
 #' #Uses data set breast from package coxphf.
+#' data(breast)
 #' out<-convertstoml(Surv(breast$TIME,breast$CENS),breast[,c("T","N","G","CD")])
 #' out1<-convertmtol(out[,c("T","N","G","CD")],out[,"chid"],out[,"choice"],
 #'    out[,"patients"])

@@ -10,6 +10,7 @@
 #'
 #' @references 
 #' \insertRef{bes}{PHInfiniteEstimates}
+#'
 #' \insertRef{kolassa16}{PHInfiniteEstimates}
 #'
 #' @examples
