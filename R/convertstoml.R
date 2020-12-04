@@ -18,17 +18,18 @@
 convertstoml<-function(survobj,covmat){
    class(survobj)<-NULL
    out<-NULL
-   oo<-order(survobj[,1],1-survobj[,2])
+   count<-0
    id<-seq(dim(survobj)[1])
-   for(ii in id){
-      if(survobj[oo[ii],2]==1){
-         atrisk<-(survobj[,1]>=survobj[oo[ii],1])
+   for(tt in unique(sort(survobj[,1]))){
+      count<-count+1
+      if(any((survobj[,1]==tt)&(survobj[,2]==1))){
+         atrisk<-(survobj[,1]>=tt)
          if(sum(atrisk)>1){
-            new1<-data.frame(list(chid=as.character(rep(ii,sum(atrisk))),
+            new1<-data.frame(list(chid=as.character(rep(count,sum(atrisk))),
               patients=as.character(id[atrisk]),choice=rep(FALSE,sum(atrisk))),
               stringsAsFactors=FALSE)
             new1<-as.data.frame(new1)
-            new1[id[atrisk]==oo[ii],3]<-TRUE
+            new1[(survobj[atrisk,2]==1)&(survobj[atrisk,1]==tt),3]<-TRUE
             out<-rbind(out,cbind(new1,covmat[atrisk,,drop=FALSE]))
          }
       }

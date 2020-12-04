@@ -19,6 +19,7 @@
 #' \insertRef{kz19}{PHInfiniteEstimates}
 newllk<-function(beta,fit,exclude=NULL,minus=FALSE,keeponly=NULL,justd0=FALSE){
 #  cat("On entry to newllk beta",beta,"keeponly",keeponly,"\n")
+#  print("fit");print(fit)
    d0<-0
    if(is.null(keeponly)) keeponly<-rep(TRUE,length(beta))
    if(is.na(keeponly[1])) keeponly<-rep(TRUE,length(beta))
@@ -37,6 +38,7 @@ newllk<-function(beta,fit,exclude=NULL,minus=FALSE,keeponly=NULL,justd0=FALSE){
       keep[as.numeric(exclude$obs[exclude$str==mm])]<-FALSE
       eventset<-(fit$y[,1]==thistime)&(fit$y[,2]==1)&keep
       riskset<-(fit$y[,1]>=thistime)&keep
+#     cat("mm",mm,"riskset",riskset,"\n")
 #     print(fit$x[riskset,])
       if(sum(riskset)>1){
          xxx<-fit$x[eventset,keeponly,drop=F]
