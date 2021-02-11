@@ -9,7 +9,7 @@ fixcoxph(randdat, xxx, iv, verbose = FALSE)
 \arguments{
 \item{randdat}{A list with at least the component y, representing the Surv() object.  I expect that this will be output from an initial non-convergent regression.}
 
-\item{xxx}{a design matrix for the gregression.  I expect that this will be the $x component of the output from an initial non-convergent regression, run with x=TRUE .}
+\item{xxx}{a design matrix for the regression.  I expect that this will be the $x component of the output from an initial non-convergent regression, run with x=TRUE .}
 
 \item{iv}{name of the variable of interest, as a character string}
 

@@ -5,7 +5,7 @@
 \title{Reduce a logistic regression with monotone likelihood to a conditional regression with
 double descending likelihood.}
 \usage{
-reduceLR(Z, nvec = NULL, yvec = NULL, keep, sst = NULL)
+reduceLR(Z, nvec = NULL, yvec = NULL, keep, sst = NULL, verybig = 1e+07)
 }
 \arguments{
 \item{Z}{regression matrix}
@@ -17,6 +17,8 @@ reduceLR(Z, nvec = NULL, yvec = NULL, keep, sst = NULL)
 \item{keep}{vector of variable names to block from consideration for removal.}
 
 \item{sst}{vector of sufficient statistics}
+
+\item{verybig}{threshold for condition number to declare colinearity.}
 }
 \value{
 a list with components

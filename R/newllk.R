@@ -18,8 +18,9 @@
 #' @references
 #' \insertRef{kz19}{PHInfiniteEstimates}
 newllk<-function(beta,fit,exclude=NULL,minus=FALSE,keeponly=NULL,justd0=FALSE){
-#  cat("On entry to newllk beta",beta,"keeponly",keeponly,"\n")
+#  message("On entry to newllk beta",beta,"keeponly",keeponly)
 #  print("fit");print(fit)
+#  message(dimnames(fit$x)[[2]])
    d0<-0
    if(is.null(keeponly)) keeponly<-rep(TRUE,length(beta))
    if(is.na(keeponly[1])) keeponly<-rep(TRUE,length(beta))
@@ -30,6 +31,8 @@ newllk<-function(beta,fit,exclude=NULL,minus=FALSE,keeponly=NULL,justd0=FALSE){
       d1<-rep(NA,sum(keeponly))
       d2<-array(NA,rep(sum(keeponly),2))
    }
+   names(d1)<-dimnames(fit$x)[[2]][keeponly]
+   dimnames(d2)<-list(dimnames(fit$x)[[2]][keeponly],dimnames(fit$x)[[2]][keeponly])
    uuu<-sort(unique(fit$y[fit$y[,2]==1,1]))
    if(!is.array(fit$x)) fit$x<-matrix(fit$x,ncol=1)
    for(mm in seq(length(uuu))){

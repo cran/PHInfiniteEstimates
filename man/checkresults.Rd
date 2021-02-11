@@ -4,10 +4,12 @@
 \alias{checkresults}
 \title{Produce a graphical assessment of Monte Carlo experiment on fidelity of proportional hazards regression to the uniform ideal.}
 \usage{
-checkresults(regnsimulation)
+checkresults(regnsimulation, frac = 0.1)
 }
 \arguments{
-\item{regnsimulation}{A matrix with six columns and as many rows as there MC samples.}
+\item{regnsimulation}{A structure with a component out, matrix with columns representing definitions of p-values and as many rows as there MC samples.}
+
+\item{frac}{Proportion for bottom of distribution to be assessed.}
 }
 \value{
 A list with components of consisting of simulated Wald p-values, likelihood ratio p-values, and corrected likelihood ratio p-values.

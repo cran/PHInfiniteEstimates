@@ -1,4 +1,4 @@
-reduceLR<-function(Z,nvec=NULL,yvec=NULL,keep,sst=NULL){
+reduceLR<-function(Z,nvec=NULL,yvec=NULL,keep,sst=NULL,verybig=1e7){
 #' Reduce a logistic regression with monotone likelihood to a conditional regression with
 #' double descending likelihood.
 #'
@@ -7,6 +7,7 @@ reduceLR<-function(Z,nvec=NULL,yvec=NULL,keep,sst=NULL){
 #' @param yvec vector of responses
 #' @param keep vector of variable names to block from consideration for removal.
 #' @param sst vector of sufficient statistics
+#' @param verybig threshold for condition number to declare colinearity.
 #' @return a list with components
 #' \itemize{
 #'   \item keepme indicators of which variables are retained in the reduced data set
@@ -46,7 +47,7 @@ reduceLR<-function(Z,nvec=NULL,yvec=NULL,keep,sst=NULL){
 #' reduceLR(Z,nvec,yvec,"CD41")
 #  message("Entering reduceLR")
    if(is.null(nvec)) nvec<-rep(1,dim(Z)[1])
-   explore<-dimnames(Z)[[2]][-match(keep,dimnames(Z)[[2]])]
+   explore<-if(is.null(keep)) dimnames(Z)[[2]] else dimnames(Z)[[2]][-match(keep,dimnames(Z)[[2]])]
    moderate<-seq(length(nvec))
    extreme<-rep(0,length(nvec))
    oldkeepme<-rep(TRUE,dim(Z)[2])
@@ -58,40 +59,64 @@ reduceLR<-function(Z,nvec=NULL,yvec=NULL,keep,sst=NULL){
    origsst<-sst
    tempz<-Z
    toosmall<-FALSE
-   temp<-try(solve(t(tempz)%*%tempz),silent=T)
+#  message("Before test")
+   temp<-try(solve(t(tempz)%*%tempz),silent=TRUE)
    if(inherits(temp,"try-error")){
+#     message("Error in solution")
       done<-TRUE
       toosmall<-NA
-      oldkeepme<-NULL
       moderate<-NULL
       extreme<-NULL
    }else{
+#     message("No Error in solution")
       done<-FALSE
       toosmall<-FALSE
    }
    while(!done){
-      im<-solve(t(tempz)%*%tempz)%*%t(tempz)
+#     message("Recycling in reduceLR")
+#     print(tempz)
+      temp<-try(tempmat<-solve(t(tempz)%*%tempz),silent=TRUE)
+      if(inherits(temp,"try-error")){
+         done<-TRUE
+         toosmall<-TRUE
+         oldkeepme<-NULL
+         oldkeepme<-rep(FALSE,dim(Z)[2])
+         moderate<-NULL
+         extreme<-rep(NA,length(nvec))
+#        message("Singular matrix in reduceLR")
+      }else{
+         im<-tempmat%*%t(tempz)
+         toosmall<-FALSE
+      }
       if(any(is.na(sst))){
 #        browser()
          toosmall<-TRUE
          done<-TRUE
-         message("NA appears in sst")
+#        message("NA appears in sst")
       }
-      constraints<-t(sst)%*%im
-      im2<-diag(rep(1,length(moderate)))-(tempz%*%im)
-      constraints<-rbind(c(constraints-nvec[moderate],-constraints),
-         cbind(im2,-im2),1)
+      if(!done){
+#        message("dim(sst)",paste(dim(sst),collapse=","))
+#        message("length(sst)",length(sst))
+#        message("dim(im)",paste(dim(im),collapse=","))
+         temp<-try(constraints<-t(sst)%*%im,silent=TRUE)
+         if(inherits(temp,"try-error")){
+            message("Dimension Error"); browser()
+         }
+         im2<-diag(rep(1,length(moderate)))-(tempz%*%im)
+         constraints<-rbind(c(constraints-nvec[moderate],-constraints),
+            cbind(im2,-im2),1)
 # Set up a linear program with twice as many variables as there are model
 # parameters.  Constraints correspond to logistic observations, and a final
 # constraint bounding the sum of the indicators.
-      xx<-lp("max",rep(1,2*length(moderate)),constraints,
-         c(rep("=",length(moderate)+1),"<="), c(rep(0,length(moderate)+1),1))
-#     browser()
-      fo<-xx$solution[seq(length(moderate))]==0
-      fz<-xx$solution[-seq(length(moderate))]==0
-      extreme[moderate[!fo]]<-1
-      extreme[moderate[!fz]]<--1
-      done<-all(c(fz,fo))
+         xx<-lp("max",rep(1,2*length(moderate)),constraints,
+            c(rep("=",length(moderate)+1),"<="), c(rep(0,length(moderate)+1),1))
+#        browser()
+         fo<-xx$solution[seq(length(moderate))]==0
+         fz<-xx$solution[-seq(length(moderate))]==0
+         extreme[moderate[!fo]]<-1
+         extreme[moderate[!fz]]<--1
+         done<-all(c(fz,fo))
+      }#end if not done.
       if(!done){
          atone<-moderate[!fo]
          moderate<-moderate[fo&fz]
@@ -99,18 +124,24 @@ reduceLR<-function(Z,nvec=NULL,yvec=NULL,keep,sst=NULL){
 #        message("Length oldkeepme",length(oldkeepme)," Lenth of sst",length(sst))
          keepme<-rep(FALSE,length(oldkeepme))
          names(keepme)<-names(oldkeepme)
+#        message("Mark a,keep",keep)
          keepme[keep]<-TRUE
-         if(kappa(t(Z[moderate,keep])%*%Z[moderate,keep])>1.0e10){
+#        message("Mark b, keepme",keepme)
+         kappaa<-if(is.null(keep)) 1 else kappa(t(Z[moderate,keep])%*%Z[moderate,keep])
+#        message("Kappa a",kappaa)
+         if(kappaa>verybig){
             toosmall<-TRUE
             done<-TRUE
-#           message("Exitting because of poor condition")
+#           message("Exiting because of poor condition")
          }
 #        cat("explore",explore)
 #        for(j in seq(length(explore))){
          for(j in explore){
             if(keepme[j]==FALSE){
                keepme[j]<-TRUE
-               if(kappa(t(Z[moderate,keepme])%*%Z[moderate,keepme])>1.0e10){
+               kappab<-kappa(t(Z[moderate,keepme])%*%Z[moderate,keepme])
+#              message("Kappa b",kappab)
+               if(kappab>verybig){
 #                 cat("keepme",keepme)
 #                 cat("names(keepme)",names(keepme))
                   keepme[j]<-FALSE
@@ -127,7 +158,7 @@ reduceLR<-function(Z,nvec=NULL,yvec=NULL,keep,sst=NULL){
             }
             sst<-newsst
             oldkeepme<-keepme
-            tempz<-Z[moderate,oldkeepme]
+            tempz<-Z[moderate,oldkeepme,drop=FALSE]
          }else{
             done<-TRUE
          }

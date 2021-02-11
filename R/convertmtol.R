@@ -6,7 +6,6 @@ convertmtol<-function(xmat,str,yvec,subjects){
 #' @param yvec vector of responses
 #' @param subjects vector of subject labels passed directly to the output.
 #' @return a data set on which to apply conditional logistic regression, corresponding to the multinomial regression model.
-#' @importFrom coxphf breast
 #' @export
 #' @details
 #' Implements version of \insertCite{kolassa16}{PHInfiniteEstimates}.  
