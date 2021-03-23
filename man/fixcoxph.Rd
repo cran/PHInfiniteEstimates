@@ -27,6 +27,10 @@ bcfit<-coxph(Surv(TIME,CENS)~ T+ N+ G+ CD,data=breast,x=TRUE)
 \donttest{
 fixcoxph(bcfit,bcfit$x,"T",Surv(TIME,CENS)~ T+ N+ G+ CD)
 }
+testdat2 <- data.frame(Time=c(4,3,1,1,2,2,3),
+  Cen=c(1,1,1,0,0,0,0), Primary=c(0,2,1,1,1,0,0), Sex=c(0,0,0,0,1,1,1))
+(bcfit<-coxph(Surv(Time,Cen)~Primary + Sex, testdat2, x=TRUE, ties="breslow"))
+fixcoxph(bcfit,bcfit$x,"Primary")
 }
 \references{
 \insertRef{kz19}{PHInfiniteEstimates}

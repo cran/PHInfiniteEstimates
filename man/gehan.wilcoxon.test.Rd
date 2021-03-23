@@ -4,7 +4,7 @@
 \alias{gehan.wilcoxon.test}
 \title{Perform Gehan's application to the Wilcoxon test for multiple samples, testing for equivalance of survival curve.  See Klein and Moeschberger (1997) Survival Analysis (7.3.3) and pp. 193-194.}
 \usage{
-gehan.wilcoxon.test(myformula, data, gehan = TRUE)
+gehan.wilcoxon.test(myformula, data, gehan = TRUE, plot = FALSE, alpha = 0.05)
 }
 \arguments{
 \item{myformula}{Proportional hazards formula appropriate for survfit}
@@ -12,10 +12,18 @@ gehan.wilcoxon.test(myformula, data, gehan = TRUE)
 \item{data}{the data set}
 
 \item{gehan}{logical flag triggering the Wilcoxon test (gehan=TRUE), with weights equal to total at risk, or the log rank test (gehan=FALSE) with weights all 1.}
+
+\item{plot}{logical flag triggering plotting.}
+
+\item{alpha}{Nominal test level for plotting on graph}
 }
 \value{
 An htest-like object with the chi-square version of the test.
 }
 \description{
 Perform Gehan's application to the Wilcoxon test for multiple samples, testing for equivalance of survival curve.  See Klein and Moeschberger (1997) Survival Analysis (7.3.3) and pp. 193-194.
+}
+\examples{
+data(breast)#From package coxphf
+gehan.wilcoxon.test(Surv(TIME,CENS)~G,data=breast)
 }

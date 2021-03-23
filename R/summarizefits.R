@@ -98,11 +98,11 @@ summarizefits<-function(repairedfit,penalizedout,penalizedoutsmaller,iv,verbose=
       out["SE"]<-sqrt(repairedfit$var[iv,iv])
       out["npar"]<-sum(repairedfit$keepme)
       out["nspar"]<-repairedfit$nssmall
-      if(any(is.na(out[c("Waldpv", "LRTpv", "Est","SRLRT","LRTpvf","Estf", "SEf","npar","nspar")]))){
-         message("NA among output")
+#     if(any(is.na(out[c("Waldpv", "LRTpv", "Est","SRLRT","LRTpvf","Estf", "SEf","npar","nspar")]))){
+#        message("NA among output")
 #        print("out"); print(out)
 #        browser()
-      }
+#     }
    }
    return(out)
 }

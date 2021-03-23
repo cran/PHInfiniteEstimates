@@ -3,9 +3,15 @@
 #' @param myformula Proportional hazards formula appropriate for survfit
 #' @param data the data set
 #' @param gehan logical flag triggering the Wilcoxon test (gehan=TRUE), with weights equal to total at risk, or the log rank test (gehan=FALSE) with weights all 1.
+#' @param plot logical flag triggering plotting.
+#' @param alpha Nominal test level for plotting on graph
 #' @return An htest-like object with the chi-square version of the test.
+#' @examples
+#' data(breast)#From package coxphf
+#' gehan.wilcoxon.test(Surv(TIME,CENS)~G,data=breast)
+#' @importFrom stats qnorm
 #' @export
-gehan.wilcoxon.test<-function(myformula,data,gehan=TRUE){
+gehan.wilcoxon.test<-function(myformula,data,gehan=TRUE,plot=FALSE,alpha=0.05){
    a<-survfit(myformula,data)
    cn<-cumsum(a$strata)
    ttt<-unique(sort(a$time))
@@ -32,20 +38,40 @@ gehan.wilcoxon.test<-function(myformula,data,gehan=TRUE){
    stat<-rep(NA,length(a$strata))
    v<-array(NA,rep(length(a$strata),2))
    w<-if(gehan) Ytot else rep(1,length(Ytot))
-   message(w)
    for(jj in seq(length(a$n))){
       stat[jj]<-sum((outmat[,jj,2]-Dtot*outmat[,jj,1]/Ytot)*w)
-      message(stat[jj])
-      print((outmat[,jj,2]-Dtot*outmat[,jj,1]/Ytot)*w)
       v[jj,jj]<-sum((outmat[,jj,1]*(Ytot-outmat[,jj,1])*(Ytot-Dtot)*Dtot/(Ytot^2*(Ytot-1)))*w^2)
       if(jj<length(a$n)) for(kk in (jj+1):length(a$n)){
          v[jj,kk]<--sum((outmat[,jj,1]*outmat[,kk,1]*(Ytot-Dtot)*Dtot/ (Ytot^2*(Ytot-1)))*w^2)
          v[kk,jj]<-v[jj,kk]
       }
    }
+   
+   yvec<-cumsum(c((outmat[,2,2]-Dtot*outmat[,2,1]/Ytot)*w,0))/sqrt(v[2,2])
+   cv<--qnorm(alpha/2)
+   if(plot){
+      if(any(abs(yvec)>cv)){
+         cutt<-min(ttt[abs(yvec)>cv])
+         sgnme<-sign(yvec[ttt==cutt])
+         flipt<-ttt[ttt>=cutt]
+         flipy<-2*cv*sgnme-yvec[ttt>=cutt]
+      }else{
+          flipt<-NULL; flipy<-NULL
+      }
+      plot(range(c(0,ttt)),range(c(cv,-cv,flipy,yvec)),type="n", 
+         xlab="Time",ylab="Statistic Value", 
+         main=paste(if(gehan) "Gehan Wilcoxon" else "Log Rank", "and Reyni tests"),
+         sub=paste(c("One-Sided Log Rank Level","One-Sided Reyni Level"),
+             c(alpha/2,alpha),sep="=",collapse=","))
+      lines(c(0,ttt),c(0,yvec),type="s")
+      abline(h=cv,lty=2)
+      abline(h=-cv,lty=2)
+      lines(flipt,flipy,col=2)
+   }
    sq<-(stat[-1,drop=FALSE]%*%solve(v[-1,-1,drop=FALSE],stat[-1,drop=FALSE]))[1,1]
    testout<-list(method=if(gehan) "Gehan-Wilcoxon" else "log rank",alternative="two-sided",
-      statistic=sq,p.value=1-pchisq(sq,length(stat)-1))
+      statistic=sq,p.value=1-pchisq(sq,length(stat)-1),renyi=max(abs(yvec)),
+      both=any((yvec>cv)&any(yvec<(-cv))))
    class(testout)<-"htest"
    return(testout)
 }

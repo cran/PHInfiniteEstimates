@@ -16,6 +16,10 @@
 #'\donttest{
 #' fixcoxph(bcfit,bcfit$x,"T",Surv(TIME,CENS)~ T+ N+ G+ CD)
 #'}
+#'testdat2 <- data.frame(Time=c(4,3,1,1,2,2,3),
+#'   Cen=c(1,1,1,0,0,0,0), Primary=c(0,2,1,1,1,0,0), Sex=c(0,0,0,0,1,1,1))
+#'(bcfit<-coxph(Surv(Time,Cen)~Primary + Sex, testdat2, x=TRUE, ties="breslow"))
+#'fixcoxph(bcfit,bcfit$x,"Primary")
 fixcoxph<-function(randdat,xxx,iv,verbose=FALSE){
 #  message("Mark a")
    bad<-NULL
@@ -27,18 +31,12 @@ fixcoxph<-function(randdat,xxx,iv,verbose=FALSE){
          message("Why is chid component of out null?")
          browser()
       }
-      out1<-convertmtol(out[,dimnames(xxx)[[2]]],out[,"chid"],out[,"choice"],out[,"patients"])
+      out1<-convertmtol(out[,dimnames(xxx)[[2]]],out[,"chid"],out[,"choice"],
+         out[,"patients"])
 # Model here is glm(out1$y~out1$xmat-1,family=binomial)
-#     message("names(out1$xmat) ",names(out1$xmat))
-#     message("Calling reduceLR for big model in fixcoxph")
       out2<-reduceLR(out1$xmat,yvec=out1$y,keep=iv)
-#     message("Results for big model")
-#     print(out2)
-#     message("sum(abs(out2$extreme))",sum(abs(out2$extreme)))
       smallerxmat<-out1$xmat[,-match(iv,dimnames(out1$xmat)[[2]])]
-#     message("Calling reduceLR for small model in fixcoxph")
       out3<-reduceLR(smallerxmat,yvec=out1$y,keep=NULL)
-#     message("out3$extreme",out3$extreme)
       e3<-length(out3$extreme)
       if(e3>0) e3<-if(any(is.na(out3$extreme))){-1}else{sum(abs(out3$extreme))}
       e2<-length(out2$extreme)
