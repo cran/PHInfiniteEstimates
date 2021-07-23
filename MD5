@@ -1,5 +1,5 @@
-9de59a54fd20310092c2af129d648fe7 *DESCRIPTION
-73a596862c590b66ff056b248ff9fbd2 *NAMESPACE
+065176f337e7088323792a60400537fa *DESCRIPTION
+2f3872599d41c153820677e56a5d4d12 *NAMESPACE
 329b2945a04d3e7ed6b4dc2d3ef31a1b *R/PHInfiniteEstimates.R
 f9fbf05c5257dcce7e6a13a9f7af17fe *R/aalenjohansen.R
 f3d8a27ac0bfd07c2e74a2981aed3bc5 *R/bestbeta.R
@@ -17,6 +17,7 @@ ce08b65e8e3875294852a5c270adb207 *R/heinzeschemper.R
 dd3b467a4436013874709e6eccf912ca *R/inference.R
 b0075789ee1fef69fc75dec3eece72a3 *R/network.R
 2411cda6fbd4a223443bfd582f476a5b *R/newllk.R
+683a8f3aba51275b53a1fa36e1761b70 *R/pllk.R
 84ad4924c4f0cd4dcc52d604bd284ffd *R/reduceLR.R
 1cea10b3bf0d1622a3f0f03db0de9cee *R/simcode.R
 c4c0a288ad522ebd13bfdb85e7c4b02a *R/simultaneouscoverage.R
@@ -25,9 +26,17 @@ f6122f96c4d220a2dd157cc756b70786 *R/summarizetable.R
 6219369ced8cec7bc29d6003c5e791db *R/sysdata.rda
 eafd6a954ad430634e6b5c27dae69cca *R/testcox.R
 6428fc6a31f6325904805abb564f5a28 *R/voter.ml.R
-953f85b1e5885d8b5dc0578faab82c5d *build/partial.rdb
+8a96d2c8194ee0b6a9df7a3d9365d9e1 *build/partial.rdb
 d4f07103555db6faf9b868c621aee307 *data/voter.ml.RData
+4d852d48fa2af4b1dba63a9a8394d3cd *inst/Makefile
 7632e75adcd0efb14aac1e6af6308bb3 *inst/REFERENCES.bib
+fedbf4cd0aee5d3404ba0dcb2af31537 *inst/cntdup.f90
+5189b863177e55e6a6131a8c6ceb321f *inst/copytox.f90
+f8ae5c34e0f6ea606e49625404a1b2f3 *inst/dobnds.f90
+8c8c39ca259e704a25b0f0774abbd439 *inst/drive.f90
+ce0feac136ea1ba22abb70098c413441 *inst/expand.f90
+0302b4131b7d0f2ee1a77b8a0d93b8f3 *inst/input
+83a8d46a18f4c543b5a0330411f44a52 *inst/network.f90
 85cbad465f65ac58a6ed55c3d1389391 *man/PHInfiniteEstimates.Rd
 43bf0acec29417e24e9a7eed64c39851 *man/aalenjohansen.Rd
 e7a3fa3c32b702ac4302fad3b954c291 *man/bestbeta.Rd
@@ -45,6 +54,7 @@ f4b5a8baded305afd234fb8995884514 *man/heinzeschemper.Rd
 432e54e66f55161b73a7b3a103f45b79 *man/inference.Rd
 efbbce58e731a7219ee0cfa0fa426797 *man/network.Rd
 74cb4cb9300b1045936a0f5c74fbf6b9 *man/newllk.Rd
+28f5c492cb9f9dc6abedc60d035ddbc8 *man/pllk.Rd
 c6670b1a17161de95a881f5bf1547b66 *man/reduceLR.Rd
 7ad34e979612f3ec77bb2dde875fd047 *man/simcode.Rd
 9e038556f4612fa1903c8056d1f3dc6b *man/simultaneouscoverage.Rd
