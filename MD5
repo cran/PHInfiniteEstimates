@@ -1,4 +1,4 @@
-065176f337e7088323792a60400537fa *DESCRIPTION
+158ec65901c597b0a0f275dcaba8231f *DESCRIPTION
 2f3872599d41c153820677e56a5d4d12 *NAMESPACE
 329b2945a04d3e7ed6b4dc2d3ef31a1b *R/PHInfiniteEstimates.R
 f9fbf05c5257dcce7e6a13a9f7af17fe *R/aalenjohansen.R
@@ -26,7 +26,7 @@ f6122f96c4d220a2dd157cc756b70786 *R/summarizetable.R
 6219369ced8cec7bc29d6003c5e791db *R/sysdata.rda
 eafd6a954ad430634e6b5c27dae69cca *R/testcox.R
 6428fc6a31f6325904805abb564f5a28 *R/voter.ml.R
-8a96d2c8194ee0b6a9df7a3d9365d9e1 *build/partial.rdb
+f84682f8a3f5afa17b98a78ae1de001f *build/partial.rdb
 d4f07103555db6faf9b868c621aee307 *data/voter.ml.RData
 4d852d48fa2af4b1dba63a9a8394d3cd *inst/Makefile
 7632e75adcd0efb14aac1e6af6308bb3 *inst/REFERENCES.bib
