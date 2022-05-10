@@ -91,13 +91,13 @@ fixcoxph<-function(randdat,xxx,iv,verbose=FALSE){
 #     }
 #     message("Mark b, diag(larger$var)",paste(diag(larger$var),collapse=" "))
    }else{#Too small branch
-      message("In too small branch")
+#     message("In too small branch")
 #     browser()
       nd<-dim(randdat$x)[2]
       no<-dim(randdat$x)[1]
       keepme<-rep(FALSE,nd)
       names(keepme)<-dimnames(randdat$x)[[2]]
-      message("End branch before bestbeta, nd and no",nd,no)
+      message("End branch before bestbeta, nd",nd,"no",no)
       vari<-array(NA,c(nd,nd))
       dimnames(vari)<-list(dimnames(randdat$x)[[2]],dimnames(randdat$x)[[2]])
       larger<-list(coefficients=rep(NA,nd),var=vari,loglik=c(0,0),

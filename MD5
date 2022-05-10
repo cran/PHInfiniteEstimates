@@ -1,5 +1,5 @@
-158ec65901c597b0a0f275dcaba8231f *DESCRIPTION
-2f3872599d41c153820677e56a5d4d12 *NAMESPACE
+781b9c867e2ea2402d4c4ad65803cb9d *DESCRIPTION
+961f6a06bedc675391994687caa54b2d *NAMESPACE
 329b2945a04d3e7ed6b4dc2d3ef31a1b *R/PHInfiniteEstimates.R
 f9fbf05c5257dcce7e6a13a9f7af17fe *R/aalenjohansen.R
 f3d8a27ac0bfd07c2e74a2981aed3bc5 *R/bestbeta.R
@@ -11,9 +11,9 @@ e9957e604279b96951e148475b5ba966 *R/convertbaselineltolr.R
 7558d8c4543d9144b0fee8468e55af77 *R/convertmtol.R
 b1aceb64945fffe2249eb1eae9526556 *R/convertstoml.R
 770050f267656c0625da334314e589d9 *R/drawdiagram.R
-217c4392d73f42ee7d36b8f8a6d389c0 *R/fixcoxph.R
+80581b1bc72cfc81d72a6d9a0da024cd *R/fixcoxph.R
 0e473b1b05fb3212c0916e9818abea7d *R/gehan.wilcoxon.R
-ce08b65e8e3875294852a5c270adb207 *R/heinzeschemper.R
+8d595f8f3a2fb4dfe11552393b3f3314 *R/heinzeschemper.R
 dd3b467a4436013874709e6eccf912ca *R/inference.R
 b0075789ee1fef69fc75dec3eece72a3 *R/network.R
 2411cda6fbd4a223443bfd582f476a5b *R/newllk.R
@@ -22,11 +22,11 @@ b0075789ee1fef69fc75dec3eece72a3 *R/network.R
 1cea10b3bf0d1622a3f0f03db0de9cee *R/simcode.R
 c4c0a288ad522ebd13bfdb85e7c4b02a *R/simultaneouscoverage.R
 482104b42ab7f95aff0125e965ea60d8 *R/summarizefits.R
-f6122f96c4d220a2dd157cc756b70786 *R/summarizetable.R
+f0dc7a9ecab4c5cc39139e6f9a92e57b *R/summarizetable.R
 6219369ced8cec7bc29d6003c5e791db *R/sysdata.rda
 eafd6a954ad430634e6b5c27dae69cca *R/testcox.R
 6428fc6a31f6325904805abb564f5a28 *R/voter.ml.R
-f84682f8a3f5afa17b98a78ae1de001f *build/partial.rdb
+31f1721259fc5ea2356a19956a8f0cf1 *build/partial.rdb
 d4f07103555db6faf9b868c621aee307 *data/voter.ml.RData
 4d852d48fa2af4b1dba63a9a8394d3cd *inst/Makefile
 7632e75adcd0efb14aac1e6af6308bb3 *inst/REFERENCES.bib
@@ -50,7 +50,7 @@ c9176362eee320ae0d226a8dbbc55e6d *man/convertbaselineltolr.Rd
 c98d42902a014523cff82797e94f2305 *man/drawdiagram.Rd
 ecdc05b4d5dc86aa4f81abc9027dc587 *man/fixcoxph.Rd
 3d8b9dd45d15cba8f48fd7e126feebbc *man/gehan.wilcoxon.test.Rd
-f4b5a8baded305afd234fb8995884514 *man/heinzeschemper.Rd
+3916c3d76abec3e0eb1ebfcbf88683ac *man/heinzeschemper.Rd
 432e54e66f55161b73a7b3a103f45b79 *man/inference.Rd
 efbbce58e731a7219ee0cfa0fa426797 *man/network.Rd
 74cb4cb9300b1045936a0f5c74fbf6b9 *man/newllk.Rd

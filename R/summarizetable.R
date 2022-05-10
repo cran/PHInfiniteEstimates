@@ -1,5 +1,6 @@
 #' Summarize the results of simulations investigating operating conditions for the data reduction method to avoid monotone likelihood.  Files are of form "hsxxx", for xxx numerals.
 #' @importFrom stats quantile pchisq
+#' @export
 summarizetable<-function(){
    fl<-system("ls hsout*",intern=TRUE)
    biglist<-vector(mode="list",length=length(fl))
@@ -19,17 +20,30 @@ summarizetable<-function(){
    temp$assess<-c("Estimate Median Bias","Wald CV","LR CV","Wald Test Level",
      "LR Test Level")
    out<-array(NA,c(dim(tt),length(temp$compare),length(temp$assess)))
+   out2<-array(NA,c(dim(tt),2))
    dimnames(out)<-temp
+   dimnames(out2)<-temp[seq(length(temp)-1)]
+   dimnames(out2)[[length(dim(tt))+1]]<-c("Infinite","BadFirth")
    index<-array(NA,c(1,length(dim(out))))
+   index1<-array(NA,c(1,length(dim(out2))))
    dimnames(index)<-list(NULL,names(dimnames(out)))
+   dimnames(index1)<-list(NULL,names(dimnames(out2)))
    nnn<-dimnames(out)[[length(index)]]
    mmm<-dimnames(out)[[length(index)-1]]
    for(fn in fl){
       for(kk in seq(length(index)-2)) index[1,kk]<-match(settings[fn,kk],
          dimnames(out)[[kk]])
+#  Bad
+      index1<-index[,seq(length(index)-1),drop=FALSE]
+      index1[1,length(index)-1]<-1
+#     browser()
+      out2[index1]<-mean(biglist[[fn]]$out[,"npar"]<4)
+      index1[1,length(index)-1]<-2
+      out2[index1]<-mean(is.na(biglist[[fn]]$out[,"npar"]))
+      print("Final"); print(out2[index1])
 #Median bias
-#  HS
       target<-log(as.numeric(settings[fn,"bb"]))
+#  HS
       index[1,length(index)-1]<-match("HS",mmm)
       index[1,length(index)]<-match("Estimate Median Bias",nnn)
       out[index]<-median(biglist[[fn]]$out[,"Estf"])-target
@@ -105,11 +119,12 @@ summarizetable<-function(){
    outb[is.na(outb)]<-0
    outc<-array(paste("xx",format(outa,digits=2),"yy",outb,"zz",sep=""),
       dim(outa),dimnames=dimnames(outa))
-   return(outc)
-#  library(R.utils)
-#  library(xtable)
-#  print(xtable(wrap(outc[,1,1,,,,2:3],map=list(c(4,5,1),c(2,3)))),file="Survival/Tex/tabout.tex")
-#  print(xtable(wrap(outc[,1,1,,,,1],map=list(c(4,1),c(2,3)))),file="Survival/Tex/tabouta.tex")
+   bad<-NA
+   return(list(outc=outc,out2=out2))
+#  library(R.utils) ; library(xtable)
+#  out<-summarizetable()
+#  print(xtable(wrap(out$outc[,1,1,,,,2:3],map=list(c(4,5,1),c(2,3)))),file="Survival/Tex/tabout.tex")
+#  print(xtable(wrap(out$outc[,1,1,,,,1],map=list(c(4,1),c(2,3)))),file="Survival/Tex/tabouta.tex")
 #  system("sed -i -e 's/xx/\\\\cfmacro{/g' -e 's/yy/}{/g' -e 's/zz/}/g' -e 's/compare=//' -e 's/.assess=/ /' -e 's/.bb=/ R=/g' -e 's/Test//' Survival/Tex/tabout.tex; sed -e 's/Level R=2/Power R=2/' -e 's/Level R=4/Power R=4/' -i Survival/Tex/tabout.tex")
 #  system("sed -i -e 's/xx/\\\\cfmacro{/g' -e 's/yy/}{/g' -e 's/zz/}/g' -e 's/compare=//' -e 's/.assess=/ /' -e 's/.bb=/ R=/g' -e 's/Test//' Survival/Tex/tabouta.tex; sed -e 's/Level R=2/Power R=2/' -e 's/Level R=4/Power R=4/' -i Survival/Tex/tabouta.tex")
 }

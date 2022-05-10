@@ -13,7 +13,8 @@ heinzeschemper(
   beta = NULL,
   add = NULL,
   half = NULL,
-  verbose = FALSE
+  verbose = FALSE,
+  smoothfirst = FALSE
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ heinzeschemper(
 \item{half}{does nothing; provided for compatabilitity with simcode.}
 
 \item{verbose}{Triggers verbose messages.}
+
+\item{smoothfirst}{Triggers normal rather than dichotomous interest covariate.}
 }
 \value{
 a list with components
