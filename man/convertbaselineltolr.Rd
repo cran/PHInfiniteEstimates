@@ -39,8 +39,10 @@ covs<-c("Labor","Liberal.Democrat","education")
 ##attributes(voter.ml)$index<-voter.ml[,c("chid","alt")]
 ##attributes(voter.ml)$choice<-"voter"
 ##mlogit(voter~1|Labor+Liberal.Democrat+education,data=voter.ml)
-mlogit(voter~1|Labor+Liberal.Democrat+education,data=voter.ml, 
-   chid.var = "chid", alt.var = "alt")
+# The package mlogit is scheduled for archiving.  If it is available, the
+# next two lines fit the model using mlogit.
+# mlogit(voter~1|Labor+Liberal.Democrat+education,data=voter.ml, 
+#    chid.var = "chid", alt.var = "alt")
 #Convert to a data set allowing treatment as the equivalent conditional logistic regression.  
 #This result will be processed using reduceLR of this package to give an equivalent conditional
 # regression model avoiding infinite estimates.

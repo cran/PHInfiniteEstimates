@@ -4,7 +4,7 @@
 \alias{bestbeta}
 \title{Newton Raphson Fitter for partial likelihood}
 \usage{
-bestbeta(fit, exclude = NULL, start = NULL, touse = NA)
+bestbeta(fit, exclude = NULL, start = NULL, touse = NA, usecc = FALSE)
 }
 \arguments{
 \item{fit}{Output from a Cox PH regression, with x=TRUE and y=TRUE}
@@ -14,12 +14,19 @@ bestbeta(fit, exclude = NULL, start = NULL, touse = NA)
 \item{start}{Starting value}
 
 \item{touse}{columns of the design matrix to use.}
+
+\item{usecc}{Logical variable indicating whether to use a continuity correction.}
 }
 \value{
 Fitted survival analysis regression parameter of class coxph
 }
 \description{
 This function implements the approximate conditional inferential approach of \insertCite{kz19;textual}{PHInfiniteEstimates} to proportional hazards regression.
+}
+\examples{
+bfit<-coxph(Surv(TIME,CENS)~T+N+CD,data=breast,x=TRUE)
+bestbeta(bfit)
+bestbeta(bfit,usecc=TRUE)
 }
 \references{
 \insertRef{kz19}{PHInfiniteEstimates}

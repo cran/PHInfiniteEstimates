@@ -7,6 +7,7 @@
 #' @param minus logical flag to change sign of partial likelyhood
 #' @param keeponly variables to retain.  Keep all if this is null or NA.
 #' @param justd0 logical variable, indicating whether to calculate only the function value and skip derivatives.
+#' @param cc1 Continuity correction for first component of the score.
 #' @return a list with components
 #' \itemize{
 #'   \item d0 partial likelihood
@@ -17,15 +18,16 @@
 #' @importFrom stats update
 #' @references
 #' \insertRef{kz19}{PHInfiniteEstimates}
-newllk<-function(beta,fit,exclude=NULL,minus=FALSE,keeponly=NULL,justd0=FALSE){
+newllk<-function(beta,fit,exclude=NULL,minus=FALSE,keeponly=NULL,justd0=FALSE,cc1=0){
 #  message("On entry to newllk beta",beta,"keeponly",keeponly)
 #  print("fit");print(fit)
 #  message(dimnames(fit$x)[[2]])
-   d0<-0
    if(is.null(keeponly)) keeponly<-rep(TRUE,length(beta))
    if(is.na(keeponly[1])) keeponly<-rep(TRUE,length(beta))
+   d0<-cc1*(beta[keeponly])[1]
    if(!justd0){
       d1<-rep(0,sum(keeponly))
+      d1[1]<-cc1
       d2<-array(0,rep(sum(keeponly),2))
    }else{
       d1<-rep(NA,sum(keeponly))

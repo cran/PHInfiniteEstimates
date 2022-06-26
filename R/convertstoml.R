@@ -3,7 +3,8 @@
 #' @param survobj A survival object, with potentially right censoring.
 #' @param covmat a matrix of covariates.
 #' @return a data set on which to apply conditional multinomial regression, corresponding to the proportional hazards regression analysis.
-#' @importFrom mlogit mlogit.data
+#' In order to run the line commented out below, you would need this:
+#' # @importFrom mlogit mlogit.data
 #' @export
 #' @details
 #' Implements version of \insertCite{kz19}{PHInfiniteEstimates}.  

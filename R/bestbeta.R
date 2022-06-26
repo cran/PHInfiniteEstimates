@@ -5,18 +5,25 @@
 #' @param exclude data set with stratum and patient number to exclude.
 #' @param start Starting value
 #' @param touse columns of the design matrix to use.
+#' @param usecc Logical variable indicating whether to use a continuity correction.
+#' @examples
+#' bfit<-coxph(Surv(TIME,CENS)~T+N+CD,data=breast,x=TRUE)
+#' bestbeta(bfit)
+#' bestbeta(bfit,usecc=TRUE)
 #' @export
 #' @importFrom stats update
 #' @importFrom stats nlm
 #' @return Fitted survival analysis regression parameter of class coxph
 #' @references
 #' \insertRef{kz19}{PHInfiniteEstimates}
-bestbeta<-function (fit, exclude = NULL, start = NULL,touse=NA){
+bestbeta<-function (fit, exclude = NULL, start = NULL,touse=NA,usecc=FALSE){
 #   cat("Just entered bestbeta touse",touse,"\n")
 #   browser()
-    start <- rep(0, dim(fit$x)[2])
+    if(is.null(start)) start <- rep(0, dim(fit$x)[2])
 #   message("In bestbeta before raw call to newllk touse",touse)
-    llkout <- newllk(start, fit, exclude = exclude,keeponly=touse,justd0=TRUE)
+    llkout <- newllk(start, fit, exclude = exclude,keeponly=touse,justd0=FALSE)
+#   browser()
+    cc1<-if(usecc) sign(llkout$d1[1])/2 else 0.0
 #   cat("In bestbeta after raw call to newllk\n")
     if(is.na(touse[1])){
        touse <- rep(TRUE, dim(fit$x)[2])
@@ -32,7 +39,7 @@ bestbeta<-function (fit, exclude = NULL, start = NULL,touse=NA){
 #      cat("In bestbeta about to call nlmo touse",touse,"\n")
        aaa<-fit
        aaa$x<-fit$x[,touse,drop=FALSE]
-       nlmo<-nlm(newllk,rep(0,sum(touse)),hessian=TRUE,fit=aaa,exclude=exclude,minus=TRUE)
+       nlmo<-nlm(newllk,rep(0,sum(touse)),hessian=TRUE,fit=aaa,exclude=exclude,minus=TRUE,cc1=cc1)
 #      browser()
        newcoef[touse]<-nlmo$estimate
        names(newcoef)<-names(touse)

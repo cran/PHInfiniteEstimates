@@ -13,6 +13,8 @@ convertstoml(survobj, covmat)
 }
 \value{
 a data set on which to apply conditional multinomial regression, corresponding to the proportional hazards regression analysis.
+In order to run the line commented out below, you would need this:
+# @importFrom mlogit mlogit.data
 }
 \description{
 Convert a proportional hazards regression to a multinomial regression.

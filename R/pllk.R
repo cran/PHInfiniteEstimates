@@ -20,17 +20,19 @@
 #'  pllk(as.vector(coef(short)),xmat,ind)
 pllk<-function(beta,xmat,ind,cc=NULL){
     if(is.null(cc)) cc<-rep(0,length(beta))
-    i<-0; d0<-0; d1<-cc;d2<-array(0,rep(dim(xmat)[2],2))
+    d0<-sum(cc*beta) 
+    d1<-cc
+    d2<-array(0,rep(dim(xmat)[2],2))
     ip<-xmat%*%beta; n<-length(ip)
-    for(i in seq(n-1)){
-       if(ind[i]==1) {
-          we<-exp(ip[i:n])
+    for(ii in seq(n-1)){
+       if(ind[ii]==1) {
+          we<-exp(ip[ii:n])
           psum<-sum(we)
-          d0<-d0+ip[i]-log(psum)
-          meanvv<-as.vector(we%*%xmat[i:n,])/psum
-          d1<-d1+xmat[i,]-meanvv
-          wx<-apply(xmat[i:n,],2,"*",we)
-          d2<-d2-t(xmat[i:n,])%*%wx/psum+outer(meanvv,meanvv)
+          d0<-d0+ip[ii]-log(psum)
+          meanvv<-as.vector(we%*%xmat[ii:n,])/psum
+          d1<-d1+xmat[ii,]-meanvv
+          wx<-apply(xmat[ii:n,],2,"*",we)
+          d2<-d2-t(xmat[ii:n,])%*%wx/psum+outer(meanvv,meanvv)
        }
     }
     return(list(d0=d0,d1=d1,d2=d2))

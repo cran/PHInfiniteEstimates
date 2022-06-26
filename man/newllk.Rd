@@ -10,7 +10,8 @@ newllk(
   exclude = NULL,
   minus = FALSE,
   keeponly = NULL,
-  justd0 = FALSE
+  justd0 = FALSE,
+  cc1 = 0
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ newllk(
 \item{keeponly}{variables to retain.  Keep all if this is null or NA.}
 
 \item{justd0}{logical variable, indicating whether to calculate only the function value and skip derivatives.}
+
+\item{cc1}{Continuity correction for first component of the score.}
 }
 \value{
 a list with components
