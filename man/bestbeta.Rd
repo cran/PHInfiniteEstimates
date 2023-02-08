@@ -15,7 +15,7 @@ bestbeta(fit, exclude = NULL, start = NULL, touse = NA, usecc = FALSE)
 
 \item{touse}{columns of the design matrix to use.}
 
-\item{usecc}{Logical variable indicating whether to use a continuity correction.}
+\item{usecc}{Logical variable indicating whether to use a continuity correction, or nuerical variable representing teh continuity correction.}
 }
 \value{
 Fitted survival analysis regression parameter of class coxph
@@ -25,8 +25,8 @@ This function implements the approximate conditional inferential approach of \in
 }
 \examples{
 bfit<-coxph(Surv(TIME,CENS)~T+N+CD,data=breast,x=TRUE)
-bestbeta(bfit)
-bestbeta(bfit,usecc=TRUE)
+noccfit<-bestbeta(bfit)
+bestbeta(bfit,usecc=TRUE,start=noccfit$start)
 }
 \references{
 \insertRef{kz19}{PHInfiniteEstimates}

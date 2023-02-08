@@ -1,8 +1,8 @@
-704d3c70b9de0a94c32b5251673cf9c7 *DESCRIPTION
-a77cfd8b4e1a4eff3ea4da9f4b5504cb *NAMESPACE
+a0bf56a7d66ee14e23cc49fdffc2d4ad *DESCRIPTION
+c76eed8f341ba1f53cea5cc9b377b5b7 *NAMESPACE
 329b2945a04d3e7ed6b4dc2d3ef31a1b *R/PHInfiniteEstimates.R
 f9fbf05c5257dcce7e6a13a9f7af17fe *R/aalenjohansen.R
-bfd332fcb39c8168dadb130dde9ff99e *R/bestbeta.R
+e0f10eb9435dcfa965da3bb6d700c8fd *R/bestbeta.R
 9bf5e7ce074c789ee21c532b8140785e *R/checkcensor.R
 28e5bf1d6c1b54a3d07b2afe46c98d6c *R/checkresults.R
 949c315e857a97488a62ca5f8bdcd93a *R/compareplot.R
@@ -15,6 +15,7 @@ f064a125c589fe421d5ca21a523e439d *R/convertstoml.R
 0e473b1b05fb3212c0916e9818abea7d *R/gehan.wilcoxon.R
 8d595f8f3a2fb4dfe11552393b3f3314 *R/heinzeschemper.R
 dd3b467a4436013874709e6eccf912ca *R/inference.R
+da33fe029c4fe5251d61cd2d742b7b6a *R/lrapproximations.R
 b0075789ee1fef69fc75dec3eece72a3 *R/network.R
 80a65274a0238673c7dabb1d9c605374 *R/newllk.R
 3db4a6f05d6a2bdf4857f3c98f79a2ff *R/pllk.R
@@ -26,7 +27,7 @@ f0dc7a9ecab4c5cc39139e6f9a92e57b *R/summarizetable.R
 6219369ced8cec7bc29d6003c5e791db *R/sysdata.rda
 eafd6a954ad430634e6b5c27dae69cca *R/testcox.R
 6428fc6a31f6325904805abb564f5a28 *R/voter.ml.R
-86cb14469fd353519aa98248cabae2d6 *build/partial.rdb
+166b71704982250f50943cecf70984d5 *build/partial.rdb
 d4f07103555db6faf9b868c621aee307 *data/voter.ml.RData
 4d852d48fa2af4b1dba63a9a8394d3cd *inst/Makefile
 7632e75adcd0efb14aac1e6af6308bb3 *inst/REFERENCES.bib
@@ -39,7 +40,7 @@ ce0feac136ea1ba22abb70098c413441 *inst/expand.f90
 83a8d46a18f4c543b5a0330411f44a52 *inst/network.f90
 85cbad465f65ac58a6ed55c3d1389391 *man/PHInfiniteEstimates.Rd
 43bf0acec29417e24e9a7eed64c39851 *man/aalenjohansen.Rd
-6e44c0786031aab539dc3c1d9e9bf8bf *man/bestbeta.Rd
+a04c61e406075515d6a1caf4cc05e52c *man/bestbeta.Rd
 cf7ebc51d6b3e34efc7b66aa433b259f *man/checkcensor.Rd
 94a892b7f9bd269588bea59e9ea4d286 *man/checkresults.Rd
 5526615870da2d20cbc930ac2780b3a2 *man/compareplot.Rd
@@ -52,6 +53,7 @@ ecdc05b4d5dc86aa4f81abc9027dc587 *man/fixcoxph.Rd
 3d8b9dd45d15cba8f48fd7e126feebbc *man/gehan.wilcoxon.test.Rd
 3916c3d76abec3e0eb1ebfcbf88683ac *man/heinzeschemper.Rd
 432e54e66f55161b73a7b3a103f45b79 *man/inference.Rd
+6214f76374513f9d79cdb0c229ab0981 *man/lrapproximations.Rd
 efbbce58e731a7219ee0cfa0fa426797 *man/network.Rd
 dd3e5ff4bb56a92b0b58c0e75f9212b7 *man/newllk.Rd
 28f5c492cb9f9dc6abedc60d035ddbc8 *man/pllk.Rd

@@ -5,11 +5,11 @@
 #' @param exclude data set with stratum and patient number to exclude.
 #' @param start Starting value
 #' @param touse columns of the design matrix to use.
-#' @param usecc Logical variable indicating whether to use a continuity correction.
+#' @param usecc Logical variable indicating whether to use a continuity correction, or nuerical variable representing teh continuity correction.
 #' @examples
 #' bfit<-coxph(Surv(TIME,CENS)~T+N+CD,data=breast,x=TRUE)
-#' bestbeta(bfit)
-#' bestbeta(bfit,usecc=TRUE)
+#' noccfit<-bestbeta(bfit)
+#' bestbeta(bfit,usecc=TRUE,start=noccfit$start)
 #' @export
 #' @importFrom stats update
 #' @importFrom stats nlm
@@ -22,8 +22,19 @@ bestbeta<-function (fit, exclude = NULL, start = NULL,touse=NA,usecc=FALSE){
     if(is.null(start)) start <- rep(0, dim(fit$x)[2])
 #   message("In bestbeta before raw call to newllk touse",touse)
     llkout <- newllk(start, fit, exclude = exclude,keeponly=touse,justd0=FALSE)
-#   browser()
-    cc1<-if(usecc) sign(llkout$d1[1])/2 else 0.0
+#   cat("Branch 3",usecc,"\n")
+    if(is.logical(usecc)){
+       if(start[1]==0){
+#         cat("Branch 0\n")
+          cc1<-if(usecc) -sign(llkout$d1[1])/2 else 0.0
+       }else{  
+#         cat("Branch 1\n")
+          cc1<-if(usecc) -sign(llkout$d1[1])/2 else 0.0
+       }
+    }else{
+#      cat("Branch 2\n")
+       cc1<-usecc
+    }
 #   cat("In bestbeta after raw call to newllk\n")
     if(is.na(touse[1])){
        touse <- rep(TRUE, dim(fit$x)[2])
