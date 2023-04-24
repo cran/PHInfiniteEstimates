@@ -1,9 +1,11 @@
-a0bf56a7d66ee14e23cc49fdffc2d4ad *DESCRIPTION
-c76eed8f341ba1f53cea5cc9b377b5b7 *NAMESPACE
+d73fc8114e75a853e25a6892e07f0fc8 *DESCRIPTION
+9b61727d2b1b41a61e285dee31b52c58 *NAMESPACE
 329b2945a04d3e7ed6b4dc2d3ef31a1b *R/PHInfiniteEstimates.R
 f9fbf05c5257dcce7e6a13a9f7af17fe *R/aalenjohansen.R
+9fe2de66cb4588db9c2171ffb865a08e *R/andersen.R
+bdc7d20f70860182705253cc7cd01cd2 *R/arjas.R
 e0f10eb9435dcfa965da3bb6d700c8fd *R/bestbeta.R
-9bf5e7ce074c789ee21c532b8140785e *R/checkcensor.R
+f742832191e985daef6a4868b6fe5d6d *R/checkcensor.R
 28e5bf1d6c1b54a3d07b2afe46c98d6c *R/checkresults.R
 949c315e857a97488a62ca5f8bdcd93a *R/compareplot.R
 00ac68452a178c72738bbca8c6292d8b *R/compete.simulation.R
@@ -12,7 +14,7 @@ e0f10eb9435dcfa965da3bb6d700c8fd *R/bestbeta.R
 f064a125c589fe421d5ca21a523e439d *R/convertstoml.R
 770050f267656c0625da334314e589d9 *R/drawdiagram.R
 80581b1bc72cfc81d72a6d9a0da024cd *R/fixcoxph.R
-0e473b1b05fb3212c0916e9818abea7d *R/gehan.wilcoxon.R
+310075c22a027ca0de8d542bbed9c121 *R/gehan.wilcoxon.R
 8d595f8f3a2fb4dfe11552393b3f3314 *R/heinzeschemper.R
 dd3b467a4436013874709e6eccf912ca *R/inference.R
 da33fe029c4fe5251d61cd2d742b7b6a *R/lrapproximations.R
@@ -24,10 +26,11 @@ b0075789ee1fef69fc75dec3eece72a3 *R/network.R
 c4c0a288ad522ebd13bfdb85e7c4b02a *R/simultaneouscoverage.R
 482104b42ab7f95aff0125e965ea60d8 *R/summarizefits.R
 f0dc7a9ecab4c5cc39139e6f9a92e57b *R/summarizetable.R
+5938cc562acc500fe68f2c5ac044ac32 *R/survregpredict.R
 6219369ced8cec7bc29d6003c5e791db *R/sysdata.rda
 eafd6a954ad430634e6b5c27dae69cca *R/testcox.R
 6428fc6a31f6325904805abb564f5a28 *R/voter.ml.R
-166b71704982250f50943cecf70984d5 *build/partial.rdb
+6e6b9b4da9ed5e4b8e9f6c57be111109 *build/partial.rdb
 d4f07103555db6faf9b868c621aee307 *data/voter.ml.RData
 4d852d48fa2af4b1dba63a9a8394d3cd *inst/Makefile
 7632e75adcd0efb14aac1e6af6308bb3 *inst/REFERENCES.bib
@@ -40,6 +43,8 @@ ce0feac136ea1ba22abb70098c413441 *inst/expand.f90
 83a8d46a18f4c543b5a0330411f44a52 *inst/network.f90
 85cbad465f65ac58a6ed55c3d1389391 *man/PHInfiniteEstimates.Rd
 43bf0acec29417e24e9a7eed64c39851 *man/aalenjohansen.Rd
+6822b35e4057e1206476b5d91d087009 *man/andersenplot.Rd
+31a37a66d313ee2f680f9e5e19d603e9 *man/arjasplot.Rd
 a04c61e406075515d6a1caf4cc05e52c *man/bestbeta.Rd
 cf7ebc51d6b3e34efc7b66aa433b259f *man/checkcensor.Rd
 94a892b7f9bd269588bea59e9ea4d286 *man/checkresults.Rd
@@ -50,7 +55,7 @@ f5d3c8e19638e427d40aa14b2184883a *man/compete.simulation.Rd
 233e12c8d570e6d785746e80e07b8443 *man/convertstoml.Rd
 c98d42902a014523cff82797e94f2305 *man/drawdiagram.Rd
 ecdc05b4d5dc86aa4f81abc9027dc587 *man/fixcoxph.Rd
-3d8b9dd45d15cba8f48fd7e126feebbc *man/gehan.wilcoxon.test.Rd
+b3f9c1d2e2687f431e18d76354920ae3 *man/gehan.wilcoxon.test.Rd
 3916c3d76abec3e0eb1ebfcbf88683ac *man/heinzeschemper.Rd
 432e54e66f55161b73a7b3a103f45b79 *man/inference.Rd
 6214f76374513f9d79cdb0c229ab0981 *man/lrapproximations.Rd
@@ -62,5 +67,6 @@ c6670b1a17161de95a881f5bf1547b66 *man/reduceLR.Rd
 9e038556f4612fa1903c8056d1f3dc6b *man/simultaneouscoverage.Rd
 10884d10b580d3cffdd6586364723846 *man/summarizefits.Rd
 d0ca9a7f2ec6945f30e5975bd3116676 *man/summarizetable.Rd
+68a4df9838e8b3603046cebc130c306d *man/survregpredict.Rd
 e4a2dc859dbdd77da09256d8c77d4782 *man/testcox.Rd
 dd154598a94c270b3408bd424e99905b *man/voter.ml.Rd

@@ -4,7 +4,14 @@
 \alias{gehan.wilcoxon.test}
 \title{Perform Gehan's application to the Wilcoxon test for multiple samples, testing for equivalance of survival curve.  See Klein and Moeschberger (1997) Survival Analysis (7.3.3) and pp. 193-194.}
 \usage{
-gehan.wilcoxon.test(myformula, data, gehan = TRUE, plot = FALSE, alpha = 0.05)
+gehan.wilcoxon.test(
+  myformula,
+  data,
+  gehan = TRUE,
+  plot = FALSE,
+  alpha = 0.05,
+  subset = NULL
+)
 }
 \arguments{
 \item{myformula}{Proportional hazards formula appropriate for survfit}
@@ -16,6 +23,8 @@ gehan.wilcoxon.test(myformula, data, gehan = TRUE, plot = FALSE, alpha = 0.05)
 \item{plot}{logical flag triggering plotting.}
 
 \item{alpha}{Nominal test level for plotting on graph}
+
+\item{subset}{Apply to a subset of the data.}
 }
 \value{
 An htest-like object with the chi-square version of the test.

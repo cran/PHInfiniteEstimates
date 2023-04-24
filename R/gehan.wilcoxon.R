@@ -5,14 +5,15 @@
 #' @param gehan logical flag triggering the Wilcoxon test (gehan=TRUE), with weights equal to total at risk, or the log rank test (gehan=FALSE) with weights all 1.
 #' @param plot logical flag triggering plotting.
 #' @param alpha Nominal test level for plotting on graph
+#' @param subset Apply to a subset of the data.
 #' @return An htest-like object with the chi-square version of the test.
 #' @examples
 #' data(breast)#From package coxphf
 #' gehan.wilcoxon.test(Surv(TIME,CENS)~G,data=breast)
 #' @importFrom stats qnorm
 #' @export
-gehan.wilcoxon.test<-function(myformula,data,gehan=TRUE,plot=FALSE,alpha=0.05){
-   a<-survfit(myformula,data)
+gehan.wilcoxon.test<-function(myformula,data,gehan=TRUE,plot=FALSE,alpha=0.05,subset=NULL){
+   a<-survfit(myformula,data=data)
    cn<-cumsum(a$strata)
    ttt<-unique(sort(a$time))
    grps<-rep(NA,sum(a$strata))
