@@ -14,6 +14,7 @@
 #' @param sst sufficient statistic vector, if input directly.  Otherwise, recomputed from resp.
 #' @param addint logical, true if a column of 1s must be added to the covariate matrix.
 #' @param verbose logical; if true, print intermediate results.
+#' @param data.name Name of the data set.
 #' @return For a successful run, a list with components:
 #' \itemize{
 #'   \item possible   matrix with vectors of possible unconditioned values of the sufficient statistic.
@@ -39,11 +40,12 @@
 #' \insertRef{mehtapatel}{PHInfiniteEstimates}
 #'
 #' \insertRef{goorinetal87}{PHInfiniteEstimates}
-network<-function(dm,n=NULL,resp=NULL,conditionon=NULL,sst=NULL,addint=TRUE,verbose=FALSE){
+network<-function(dm,n=NULL,resp=NULL,conditionon=NULL,sst=NULL,addint=TRUE,verbose=FALSE,data.name="Test data"){
    out<-0#out will be used to track error conditons.  NA indicates errors; anything else indicates ok so far.
    dm<-as.matrix(dm)
    if(addint){
       dm<-cbind(1,dm)
+      dimnames(dm)[[2]][1]<-"Intercept"
       if(verbose) message("Added intercept to design matrix.\n")
    }
    if(!is.null(conditionon)&is.null(sst)){
@@ -99,7 +101,9 @@ network<-function(dm,n=NULL,resp=NULL,conditionon=NULL,sst=NULL,addint=TRUE,verb
 #     oo<-order(possible)
 #     possible<-possible[oo,]
 #     count<-count[oo]
-      out<-list(possible=possible,count=count,obsd=sst[-conditionon])
+      out<-list(possible=possible,count=count,obsd=sst[-conditionon],
+          data.name=data.name, conditioned=dimnames(dm)[[2]][conditionon],
+          comparison=dimnames(dm)[[2]][-conditionon])
    }
    return(out)
 }

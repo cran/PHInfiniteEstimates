@@ -11,7 +11,8 @@ network(
   conditionon = NULL,
   sst = NULL,
   addint = TRUE,
-  verbose = FALSE
+  verbose = FALSE,
+  data.name = "Test data"
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ sufficient statistics are entered directly.  Either resp or sst must be provided
 \item{addint}{logical, true if a column of 1s must be added to the covariate matrix.}
 
 \item{verbose}{logical; if true, print intermediate results.}
+
+\item{data.name}{Name of the data set.}
 }
 \value{
 For a successful run, a list with components:

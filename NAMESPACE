@@ -2,6 +2,7 @@
 
 export(aalenjohansen)
 export(andersenplot)
+export(arjasplot)
 export(bestbeta)
 export(checkcensor)
 export(checkresults)

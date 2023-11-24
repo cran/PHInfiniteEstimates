@@ -8,6 +8,7 @@
 #' @param stratifier The name of the stratifier variable
 #' @param status The name of the status variable
 #' @param mydata The data frame.
+#' @export
 arjasplot<-function(formulastring,time,stratifier,status,mydata){
    fit <- coxph(as.formula(formulastring),mydata)
    bbb<-survfit(fit,newdata=mydata)$cumhaz

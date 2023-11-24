@@ -4,28 +4,38 @@
 \alias{inference}
 \title{Perform inference on conditional sample space.}
 \usage{
-inference(out, alpha = 0.05, rng = c(-5, 5))
+inference(
+  netout,
+  alpha = 0.05,
+  rng = c(-5, 5),
+  alternative = c("two.sided", "less", "greater")
+)
 }
 \arguments{
-\item{out}{List of the sort provided by network.
-\itemize{
-  \item possible   matrix with vectors of possible unconditioned values of the sufficient statistic.
-  \item count   count of entries in the conditional distribution.
-  \item obsd   Observed value of unconditioned sufficient statistics.
-}}
+\item{netout}{List of the sort provided by network.}
 
 \item{alpha}{Test level, or 1- confidence level.}
 
 \item{rng}{Range of possible parameter values.}
+
+\item{alternative}{String indicating two- or one-sided alternative, and, if one-sided, direction.}
 }
 \value{
-List with components:
+List of outputs, including
 \itemize{
   \item ospv Observed one-sided p values
   \item tspv Observed two-sided p value.
   \item ci confidence interval.
-  \item mle Maximum likelihood estimator.
+  \item estimate Maximum conditional likelihood estimator.
+  \item null.value Value of parameter under null hypothesis.
+  \item data.name Name of data set
+  \item method Method used to generate test.
+  \item statistic sufficient statistic value for inference variable.
+  \item p.value p.value
+  \item conf.int confidence interval.
+  \item alternative String indicating two- or one-sided alternative, and, if one-sided, direction.
 }
+and including standard stats:::orint.htest components, and of class htest.
 }
 \description{
 This function performs classical frequentist statistical inference to a discrete multivariate canonical exponential family.  
@@ -44,8 +54,8 @@ citing \insertCite{goorinetal87;textual}{PHInfiniteEstimates}.
 goorin<-data.frame(LI=c(0,0,0,0,1,1,1,1),Sex=c(0,0,1,1,0,0,1,1),
    AOP=c(0,1,0,1,0,1,0,1),N=c(3,2,4,1,5,5,9,17),Y=c(3,2,4,1,5,3,5,6))
 \donttest{
-out<-network(goorin[,1:3],goorin[,4],conditionon=1:3,resp=goorin[,5])
-inference(out)
+netout<-network(goorin[,1:3],goorin[,4],conditionon=1:3,resp=goorin[,5])
+inference(netout)
 }
 }
 \references{

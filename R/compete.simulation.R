@@ -17,7 +17,7 @@ compete.simulation<-function(ncr=4,sig=.8,ns=1000){
   net<-survfit(Surv(aggregate,whichmin==1)~1)
   cruderesp<-aggregate  
   cruderesp[whichmin!=1]<-Inf 
-  plot(c(0,max(aggregate)),c(0,1),type="n", 
+  plot(c(0,max(aggregate)),c(0,1),type="n", xlab="Survival",ylab="Time",
      sub=paste("Lognormal Frailty Model, ",ncr," hazards, sigma=",sig,sep=""),
      main="Behavior of Measures for Competing Risk")
   lines(sort(aggregate),rev(seq(length(aggregate))/length(aggregate)),type="s")
@@ -26,6 +26,9 @@ compete.simulation<-function(ncr=4,sig=.8,ns=1000){
   lines(net,conf.int=FALSE,lty=3)
   aj<-aalenjohansen(aggregate,whichmin)
   lines(aj$time,aj$surv,lty=4,col=2)
-  legend(median(range(aggregate)),1,lty=1:4,
+  legend(
+#    median(range(aggregate)),1,
+     0,.4,
+     lty=1:4,col=c(1,1,1,2), 
      legend=c("Aggregate","Crude","Net","Aalen-Johansen"))
 }
